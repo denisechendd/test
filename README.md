@@ -43,6 +43,7 @@ In the encoder function fe(·,W+), the input vector is X0,j∗ of item j, and th
 When the ratio λn/λv approaches positive infinity, there is a split into a two-step model in which the input of CTR (Click through Rate) is fed with the latent representation learned using SDAE. On the other hand, the extreme case would appear when λn/λv shrinks to zero where the decoder of the SDAE essentially vanishes. In Figure 1, it is shown with the graphical model of the degenerated CDL, where the variable λn/λv goes to zero. The predictive result would be varied for both extreme cases when either λn/λv close to positive infinity or 0. With the input of W+, the gradients of L are computed along with ui and vj, and both variables are set with zero. The following update rules are introduced below:
 <img src="image/image8.png" width="80%" height="80%"> <br>
 ![equation](https://latex.codecogs.com/gif.latex?\dpi{400}\alpha&space;+&space;\frac{2\beta}{\gamma})
+![equation](http://www.sciweavers.org/tex2img.php?eq=U%20%3D%20%28u_i%29%5EI_%7Bi%3D1%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
 $U = (u_i)^I_{i=1}$, $V = (v_j)^J_{j=1}$, $C_i = diag(C_{i1}, ….., C_{ij})$: diagonal matrix <br>
 $R_i = (R_{i1}, ….., R_{ij})^T$: column vector included all the ratings of user i <br>
 $C_{ij}$: confidence controlled by a and b  <br>
