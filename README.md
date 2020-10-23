@@ -1,12 +1,12 @@
 # Collaborative Deep Learning for Recommender Systems
 Recommender Systems are widely used by many companies to recommend products to the target customers. Content-based methods, collaborative filtering (CF) based methods, and hybrid methods are three main categories in the Recommender Systems. Content-based methods generate the recommendation via user profiles or product descriptions. On the other hand, CF-based methods utilize the users' behavioral or preferences datasets, such as user ratings on items, instead of user or product content information. Hybrid methods are the combinations of content-based and CF-based methods. Collaborative deep learning (CDL), hierarchical Bayesian model, learns the deep representation for the content information and applies the collaborative filtering for the ratings (feedback) matrix. CDL model is an advanced approach with the experimentation of the real-world datasets. <br>
-In this article, you will learn the singular value decomposition and truncated SVD of the recommender system:
-(1) Introduction
-(2) NOTATION AND PROBLEM FORMULATION
-(3) Stacked Denoising Autoencoders
-(4) Generalized Bayesian SDAE
-(5) Collaborative Deep Learning
-(6) Maximum A Posteriori Estimates
+**In this article, you will learn the singular value decomposition and truncated SVD of the recommender system:**
+(1) Introduction <br>
+(2) NOTATION AND PROBLEM FORMULATION <br>
+(3) Stacked Denoising Autoencoders <br>
+(4) Generalized Bayesian SDAE <br>
+(5) Collaborative Deep Learning <br>
+(6) Maximum A Posteriori Estimates <br>
 (7) Prediction
 ## Introduction
 The recommender system, collaborative deep learning (CDL), is introduced as a hierarchical Bayesian model. Stacked denoising autoencoder (SDAE) is known as a Bayesian formulation of a deep learning model. In terms of the CDL model, it combines the content from the deep representation learning and collaborative filtering for the ratings (feedback) matrix, which enables the interaction from two channels. CDL incorporates several techniques such as deep Boltzmann machines, recurrent neural networks, and convolutional neural networks. <br>
@@ -22,8 +22,8 @@ W+: weight matrices and biases in all layers <br>
 SDAE is the model to process the input encoding data through the representation learning to produce the predicted output. The neural network structure is shown in the figure 2. Among all these layers, X2 is the middle hidden layer and X0 represents the clean input data. <br>
 <img src="image/image1.png" width="80%" height="80%"> <br>
 <img src="image/image2.png" width="80%" height="80%"> <br>
-<img src="image/image3.png" width="80%" height="80%">
-**Eq1: The optimization formula for SDAE** <br>
+<img src="image/image3.png" width="80%" height="80%"> <br>
+<div align="center">**Eq1: The optimization formula for SDAE** </div>
 where λ is a regularization parameter and || .||denotes the Frobenius norm. <br>
 Figure 1 shows the CDL graphical model, and SDAE graphical model is circled in red. SDAE with L = 2 is shown in graph 2. The graphical model of the degenerated CDL is shown in right, and the SDAE encoder model is shown in the dashed rectangle. There is no decoder in SDAE when L is 2. For better model implementation, variables x1 have vanished and there would be remaining xL/2 remained in the graphical models. <br>
 Figure 1: On the left is the graphical model of CDL. The part inside the dashed rectangle represents an SDAE. An example SDAE with L = 2 is shown. On the right is the graphical model of the degenerated CDL. The part inside the dashed rectangle  represents the encoder of an SDAE. An example SDAE with L = 2 is shown on the right of it. Note that although L is still 2, the decoder of the SDAE vanishes. To prevent clutter, we omit all variables xl except x0 and xL/2 in the graphical models. <br>
@@ -37,10 +37,11 @@ The generative process of CDL is discussed as algorithm1 above and algorithm2 be
 From the above CDL model introduction, all parameters are seen as random variables for the application of Markov chain Monte Carlo (MCMC) or variational approximation methods. However, it is required with a high computation cost. The MAP estimates are extracted from the EM-style algorithm, which is the comparison to the CTR baseline algorithm. Similar to CTR, maximizing the joint log-likelihood of U, V, {Xl}, Xc, {Wl}, {bl}, and R given λu, λv, λw, λs, and λn is the same as maximizing the posterior probability.
 <img src="image/image6.png" width="80%" height="80%"> <br>
 <img src="image/image7.png" width="80%" height="80%"> <br>
-**objective function (2)**  <br>
+<div align="center">**objective function (2)**  </div>
 In the encoder function fe(·,W+), the input vector is X0,j∗ of item j, and the encoding of the item is computed. The function fr(·,W+) is input with X0,j∗ with the encodings' computation, and reconstructed content vector of item j. In the 6 layer model with L=6, the output of the third layer is fe(X0,j∗,W+) and the sixth layer is fr(X0,j∗,W+). Regarding the optimization, multi-layer perception is applied to the third term in the objective function (2) above using the latent item vectors vj as target. SDAE is represented in the fourth term with the goal to minimize the reconstruction error. Looking deeply into the neural networks (NN), when λs is close by the positive infinity, the probabilistic graphical model of CDL in the training phase in Figure 1 would be split into two combined training neural networks with a common input layer and the different output layers in the Figure 3. Due to the addition of the rating matrix, it is more complex to build the second network than typical neural networks. <br>
 When the ratio λn/λv approaches positive infinity, there is a split into a two-step model in which the input of CTR (Click through Rate) is fed with the latent representation learned using SDAE. On the other hand, the extreme case would appear when λn/λv shrinks to zero where the decoder of the SDAE essentially vanishes. In Figure 1, it is shown with the graphical model of the degenerated CDL, where the variable λn/λv goes to zero. The predictive result would be varied for both extreme cases when either λn/λv close to positive infinity or 0. With the input of W+, the gradients of L are computed along with ui and vj, and both variables are set with zero. The following update rules are introduced below:
 <img src="image/image8.png" width="80%" height="80%"> <br>
+![U = (u_i)^I_{i=1}](http://www.sciweavers.org/tex2img.php?eq=1%2Bsin%28mc%5E2%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=)
 $U = (u_i)^I_{i=1}$, $V = (v_j)^J_{j=1}$, $C_i = diag(C_{i1}, ….., C_{ij})$: diagonal matrix <br>
 $R_i = (R_{i1}, ….., R_{ij})^T$: column vector included all the ratings of user i <br>
 $C_{ij}$: confidence controlled by a and b  <br>
