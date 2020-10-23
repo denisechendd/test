@@ -83,3 +83,15 @@ The norm result is shown in the graph below. Since the SADE model is required wi
 https://arxiv.org/pdf/1409.2944.pdf
 - Collaborative-Deep-Learning-for-Recommender-Systems <br>
 https://github.com/xiaoouzhang/Collaborative-Deep-Learning-for-Recommender-Systems
+
+$$
+\begin{align*}
+& \limx {(\frac 1 {x^2} - \frac 1 {x\tan x})} \tag{1} \\\\
+ = & \limx {\frac{\tan x - x}{x^2\tan x}}  \tag{2}\\\\
+ = & \limx {\frac{\tan x - x}{x^3}}  \tag{3}\\\\
+\overset {L^\prime}{=} & \limx \frac {\sec^2 x -1} {3 x^2} \tag{4} \\\\
+= &\limx \frac {\tan^2 x} {3x^2} \tag{5}\\\\
+= &\limx \frac {x^2} {3x^2} \tag{6}\\\\
+= &\frac 1 3 \tag{7}
+\end{align*}
+$$
