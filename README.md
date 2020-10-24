@@ -62,7 +62,8 @@ For any new item j without the rating in the training data, its offset ε^∗_ j
 The data is provided from Santander bank with customers' purchase records in 1.5 years for the new product recommendation for the existing users. The start date of the data is 2015–01–28, including customers' monthly records of products, such as "credit card", "savings account", and so on. The latest date of data is 2016–05–28. The goal is to predict the items which customers will buy next month. The test and train sets are split by time. The data is found here.
 ## Rating Matrix
 The rating file is read in h5 format with several data frames stored in it, and the rating file is split with training and test data frames. Given the customers rating data frame, the customers' ID row and product ID columns are input with customers' ratings.
-<script src="https://gist.github.com/denisechendd/4facb6467ce75550a4823374153ee3b4.js?file=gist.md"></script>
+<script src="https://gist.github.com/denisechendd/4facb6467ce75550a4823374153ee3b4.js"> <br>
+<script src="https://gist.github.com/denisechendd/4facb6467ce75550a4823374153ee3b4.js?file=gist.md">
 ## User Information
 First, we read in the rating training data frame with a total of 551605 users and 24 products. To minimize the computation cost, the data frame shrinks the shape to 50,000. There is a generated data frame with the user information encoding. In the user encoding data frame, there are 2 columns with one customer code, and the other is the encoding array fed with the rating given by the user. Lastly, the user encoding data frame is output with 50,000 users. Besides, there are 340 columns in the data frame with each column given the rating by each user in the row.
 <script src="https://gist.github.com/denisechendd/be07d4711ed1467adb2adfdab2c1e591.js"></script>
