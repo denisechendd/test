@@ -42,9 +42,9 @@ the algorithm above is objective function <br>
 In the encoder function fe(·,W+), the input vector is X0,j∗ of item j, and the encoding of the item is computed. The function fr(·,W+) is input with X0,j∗ with the encodings' computation, and reconstructed content vector of item j. In the 6 layer model with L=6, the output of the third layer is fe(X0,j∗,W+) and the sixth layer is fr(X0,j∗,W+). Regarding the optimization, multi-layer perception is applied to the third term in the objective function (2) above using the latent item vectors vj as target. SDAE is represented in the fourth term with the goal to minimize the reconstruction error. Looking deeply into the neural networks (NN), when λs is close by the positive infinity, the probabilistic graphical model of CDL in the training phase in Figure 1 would be split into two combined training neural networks with a common input layer and the different output layers in the Figure 3. Due to the addition of the rating matrix, it is more complex to build the second network than typical neural networks. <br>
 When the ratio λn/λv approaches positive infinity, there is a split into a two-step model in which the input of CTR (Click through Rate) is fed with the latent representation learned using SDAE. On the other hand, the extreme case would appear when λn/λv shrinks to zero where the decoder of the SDAE essentially vanishes. In Figure 1, it is shown with the graphical model of the degenerated CDL, where the variable λn/λv goes to zero. The predictive result would be varied for both extreme cases when either λn/λv close to positive infinity or 0. With the input of W+, the gradients of L are computed along with ui and vj, and both variables are set with zero. The following update rules are introduced below:
 <img src="image/image8.png" width="80%" height="80%"> <br>
-<img src="image/eq1.png" width="80%" height="80%"> <br>
-<img src="image/equ2.png" width="80%" height="80%"> <br>
-<img src="image/eq3.png" width="80%" height="80%"> <br>
+<img src="image/eq1.png" > <br>
+<img src="image/equ2.png" > <br>
+<img src="image/eq3.png" > <br>
 Equations above are diagonal matrices <br>
 <img src="image/eq4.png" width="80%" height="80%"> <br>
 column vector included all the ratings of user i <br>
@@ -52,9 +52,9 @@ C_ij: confidence controlled by a and b  <br>
 With the input of U and V, the weights Wl and biases bl from each layer are learned through the back-propagation learning algorithm. The gradients of the likelihood regarding Wl and bl are introduced below:
 <img src="image/image9.png" width="80%" height="80%"> <br>
 ## Prediction
-The observed test data is input with D. Then, the predicted rating is predicted with the input of point estimates such as ui, W+ and j.
+The observed test data is input with D. Then, the predicted rating is predicted with the input of point estimates such as ui, W+ and j. <br>
 <img src="image/image10.png" width="80%" height="80%"> <br>
-E[·] is represented as the expectation operation. The following equation shows the approximation of the predicted rating
+E[·] is represented as the expectation operation. The following equation shows the approximation of the predicted rating. <br>
 <img src="image/image11.png" width="80%" height="80%"> <br>
 For any new item j without the rating in the training data, its offset ε^∗_ j shrinks to zero.
 ## Hands-on experience with python code
