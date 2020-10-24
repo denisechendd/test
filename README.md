@@ -52,7 +52,7 @@ C_ij: confidence controlled by a and b  <br>
 With the input of U and V, the weights Wl and biases bl from each layer are learned through the back-propagation learning algorithm. The gradients of the likelihood regarding Wl and bl are introduced below:
 <img src="image/image9.png" width="80%" height="80%"> <br>
 ## Prediction
-The observed test data is input with D. Then, the predicted rating is predicted with the input of point estimates such as ui, W+ andj. <br>
+The observed test data is input with D. Then, the predicted rating is predicted with the input of point estimates such as ui, W+ and j. <br>
 <img src="image/image10.png" width="80%" height="80%"> <br>
 E[·] is represented as the expectation operation. The following equation shows the approximation of the predicted rating. <br>
 <img src="image/image11.png" width="80%" height="80%"> <br>
@@ -61,7 +61,8 @@ For any new item j without the rating in the training data, its offset ε^∗_ j
 ## Data Description:
 The data is provided from Santander bank with customers' purchase records in 1.5 years for the new product recommendation for the existing users. The start date of the data is 2015–01–28, including customers' monthly records of products, such as "credit card", "savings account", and so on. The latest date of data is 2016–05–28. The goal is to predict the items which customers will buy next month. The test and train sets are split by time. The data is found here.
 ## Rating Matrix
-The rating file is read in h5 format with several data frames stored in it, and the rating file is split with training and test data frames. Given the customers rating data frame, the customers' ID row and product ID columns are input with customers ' ratings.
+The rating file is read in h5 format with several data frames stored in it, and the rating file is split with training and test data frames. Given the customers rating data frame, the customers' ID row and product ID columns are input with customers' ratings.
+{% gist 4facb6467ce75550a4823374153ee3b4 %}
 <script src="https://gist.github.com/denisechendd/4facb6467ce75550a4823374153ee3b4.js"></script>
 ## User Information
 First, we read in the rating training data frame with a total of 551605 users and 24 products. To minimize the computation cost, the data frame shrinks the shape to 50,000. There is a generated data frame with the user information encoding. In the user encoding data frame, there are 2 columns with one customer code, and the other is the encoding array fed with the rating given by the user. Lastly, the user encoding data frame is output with 50,000 users. Besides, there are 340 columns in the data frame with each column given the rating by each user in the row.
